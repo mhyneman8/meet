@@ -1,11 +1,11 @@
 service: auth-server
 
-# frameworkVersion: '2'
+frameworkVersion: '2'
 
 provider:
   name: aws
   runtime: nodejs12.x
-  profile: mhyneman
+  # profile: mhyneman
   region: us-west-2
   timeout: 60
   lambdaHashingVersion: 20201221
