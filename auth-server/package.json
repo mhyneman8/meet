@@ -11,6 +11,8 @@
     "aws-sdk": "^2.945.0",
     "googleapis": "^59.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "serverless-offline": "^7.0.0"
+  },
   "description": ""
 }
