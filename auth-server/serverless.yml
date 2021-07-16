@@ -1,13 +1,12 @@
+org: mhyneman8
+app: auth-server
 service: auth-server
-
-
 
 frameworkVersion: '2'
 
 provider:
   name: aws
   runtime: nodejs12.x
-  # profile: mhyneman
   region: us-west-2
   timeout: 60
   lambdaHashingVersion: 20201221
@@ -25,8 +24,14 @@ functions:
       - http:
           path: api/get-auth-url
           method: get
+  getAccessToken:
+    handler: handler.getAccessToken
+    events:
+      - http:
+          path: api/token/{code}
+          method: get
 
 plugins:
-  - serverless.offline
+  - serverless-offline
 
 
