@@ -64,12 +64,12 @@
                         const result = JSON.stringify(json);
                         console.log(result);
                         // get value of authURL
-                        const { authURL } = JSON.parse(result);
-                        console.log(authURL)
+                        const { authUrl } = JSON.parse(result);
+                        console.log(authUrl)
 
                         // add to html
                         resultElement.innerText = result;
-                        resultLink.href = authURL;
+                        resultLink.href = authUrl;
                     });
             };
             // Step 2
