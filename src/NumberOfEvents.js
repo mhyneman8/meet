@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { mockData } from './mock-data';
+import { getEvents } from './api';
 
 class NumberOfEvents extends Component {
     
@@ -20,7 +21,7 @@ class NumberOfEvents extends Component {
         return (
             <div>
                 <label 
-                    for='number-events' 
+                    // for='number-events' 
                     className='number-label'>
                     Number of Events:
                 </label>
@@ -32,8 +33,8 @@ class NumberOfEvents extends Component {
                     onChange={this.handleInputChanged} 
                     placeholder={this.state.eventNumber}
                 />
-
-                <div>{mockData}</div>  
+                {/* not sure why I wanted this */}
+                {/* <div>{mockData}</div>   */}
             </div>
             
 
