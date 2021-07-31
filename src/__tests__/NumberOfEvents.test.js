@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import NumberOfEvents from '../NumberOfEvents';
 
 describe('<NumberOfEvents /> component', () => {
@@ -31,3 +31,14 @@ describe('<NumberOfEvents /> component', () => {
         expect(NumberWrapper.state('eventNumber')).toBe('20');
     })
 })
+
+// describe('<NumberOfEvents /> component', () => {
+//     let NumberWrapper;
+//     beforeAll(() => {
+//         NumberWrapper = mount(<NumberOfEvents />)
+//     })
+
+//     test('', () => {
+        
+//     })
+// })

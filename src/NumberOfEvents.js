@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { mockData } from './mock-data';
-import { getEvents } from './api';
+// import { mockData } from './mock-data';
+// import { getEvents } from './api';
 
 class NumberOfEvents extends Component {
     
@@ -19,25 +19,20 @@ class NumberOfEvents extends Component {
 
     render() {
         return (
-            <div>
+            <div className='numberOfEvents'>
                 <label 
-                    // for='number-events' 
                     className='number-label'>
                     Number of Events:
                 </label>
                 <input 
-                    type='text' 
+                    type='number' 
                     id='number-events' 
                     className='number-events' 
                     value={this.state.eventNumber}
                     onChange={this.handleInputChanged} 
                     placeholder={this.state.eventNumber}
                 />
-                {/* not sure why I wanted this */}
-                {/* <div>{mockData}</div>   */}
             </div>
-            
-
         );
     }
 }

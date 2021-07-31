@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { mockData } from './mock-data';
 
 class Event extends Component {
    
@@ -8,11 +7,11 @@ class Event extends Component {
         description: "",
         location: "",
         dateTime: "",
-        show: false,
+        timeZone: "",
+        show: false
     };
 
     handleShowButton = () => {
-        // this.setstate = { show: !this.state.show };
         if (this.state.show === true) {
             this.setState({ show: false});
         } else {
@@ -21,29 +20,31 @@ class Event extends Component {
     };   
 
     render() {
-     
+        const { event } = this.props;
+
         return (
             <div className="event">
                 <div className="event-list">
                     <h1 className="event-title">
-                        {this.state.summary}
+                        {event.summary}
                     </h1>
                     <p className="event-location">
-                        {this.state.location}
+                        {event.location}
                     </p>
                     <p className="event-dateTime">
-                        {this.state.dateTime}
+                        start: {event.start.dateTime} - {event.start.timeZone}
                     </p>
                    
                     <button 
                         onClick = { () => this.handleShowButton()}
                         className="show-more">
-                            Show more
+                            {/* Show more */}
+                            {!this.state.show ? 'Show Details' : 'Hide Details'}
                     </button>
                     { this.state.show === true && 
                         (<div className="details">
                             <h2>About Event: </h2>
-                            <p>{this.state.description}</p>
+                            <p>{event.description}</p>
                             <button
                                 onClick = {() => this.handleShowButton()}
                                 className="show-less">

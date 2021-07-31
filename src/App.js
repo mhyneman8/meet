@@ -9,7 +9,8 @@ class App extends Component {
   state = {
     events: [],
     locations: [],
-    numberOfEvents: 15
+    eventNumber: 15,
+
   }
 
 // checked 
@@ -26,11 +27,14 @@ class App extends Component {
     });
   }
 
+
 // checked
   componentDidMount() {
     this.mounted = true;
     getEvents().then((events) => {
+      if (this.mounted) {
       this.setState({ events, locations: extractLocations(events) });
+      }
     });
   }
 
@@ -43,9 +47,14 @@ class App extends Component {
     return (
       
       <div className="App">
-        <CitySearch  locations={this.state.locations} updateEvents={this.updateEvents} />
+        <h1>Meet App</h1>
+
+        <CitySearch  locations={this.state.locations} 
+          updateEvents={this.updateEvents}
+          // numberOfEvents={this.state.eventNumber}  
+        />
         <EventList events={this.state.events} />
-        <NumberOfEvents />
+        <NumberOfEvents updateEvents={this.updateEvents} />
       </div>
     );  
   }
