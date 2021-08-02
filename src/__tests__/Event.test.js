@@ -15,19 +15,12 @@ describe('<Event /> component', () => {
         });
         expect(EventWrapper.find('.show-more')).toHaveLength(1);
     });
-    
-    test('Show less button is rendered', () => {
-        EventWrapper.setState({
-            show: true,
-        });
-        expect(EventWrapper.find('.show-less')).toHaveLength(1);
-    });
 
-    test('Details are hidden after show-less is clicked', () => {
+    test('Details are hidden after show-more is clicked again', () => {
         EventWrapper.setState({
             show: true,
         });
-        EventWrapper.find('.show-less').simulate('click');
+        EventWrapper.find('.show-more').simulate('click');
         expect(EventWrapper.state('show')).toEqual(false);
     })
 

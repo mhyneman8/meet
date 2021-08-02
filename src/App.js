@@ -10,30 +10,43 @@ class App extends Component {
     events: [],
     locations: [],
     eventNumber: 15,
-
+    currentCity: 'all'
   }
 
 // checked 
-  updateEvents = (location) => {
+  updateEvents = (location, numberOfEvents) => {
     getEvents().then((events) => {
       const locationEvents = (location === 'all')
       ?
-        events
+        events.slice(0, numberOfEvents)
       :
         events.filter((event) => event.location === location);
-      this.setState({
-        events: locationEvents
-      });
+      if (this.mounted) {
+        this.setState({
+        events: locationEvents.slice(0, numberOfEvents),
+        currentCity: location
+      
+        });
+      }
     });
+  }
+
+  updateNumberOfEvents(eventNumber) {
+    this.setState({ numberOfEvents: eventNumber });
+    const { currentCity } = this.state;
+    this.updateEvents(currentCity, eventNumber);
   }
 
 
 // checked
   componentDidMount() {
+    const { numberOfEvents } = this.state;
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
-      this.setState({ events, locations: extractLocations(events) });
+      this.setState({ 
+        events: events.slice(0, numberOfEvents), 
+        locations: extractLocations(events) });
       }
     });
   }
@@ -47,14 +60,22 @@ class App extends Component {
     return (
       
       <div className="App">
-        <h1>Meet App</h1>
+        <h1 className="title">
+          Meet App
+        </h1>
 
-        <CitySearch  locations={this.state.locations} 
+        <CitySearch  
+          locations={this.state.locations} 
           updateEvents={this.updateEvents}
-          // numberOfEvents={this.state.eventNumber}  
+          numberOfEvents={this.state.numberOfEvents}  
+          events={this.state.events}
         />
+
+        <NumberOfEvents 
+          updateNumbeOfEvents={this.updateNumberOfEvents}
+        />
+
         <EventList events={this.state.events} />
-        <NumberOfEvents updateEvents={this.updateEvents} />
       </div>
     );  
   }

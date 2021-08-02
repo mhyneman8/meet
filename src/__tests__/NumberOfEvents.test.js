@@ -17,18 +17,18 @@ describe('<NumberOfEvents /> component', () => {
     });
 
     test('default number is 15', () => {
-        const number = NumberWrapper.state('eventNumber');
+        const number = NumberWrapper.state('numberOfEvents');
 
         expect(NumberWrapper.find('.number-events').prop('value')).toBe(number);
     })
 
     test('change state when text input changes', () => {
         NumberWrapper.setState({
-            eventNumber: '15'
+            numberOfEvents: '15'
         });
         const testNumber = { target: { value: '20'}};
         NumberWrapper.find('.number-events').simulate('change', testNumber);
-        expect(NumberWrapper.state('eventNumber')).toBe('20');
+        expect(NumberWrapper.state('numberOfEvents')).toBe('20');
     })
 })
 

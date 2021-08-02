@@ -2,6 +2,7 @@
 .App {
   text-align: center;
   padding: 2% 5%;
+  background-color: #e5f9e0;
 }
 
 .App * {
@@ -22,6 +23,16 @@ p {
 }
 .showSuggestions {
   display: block;
+}
+
+.show-more {
+  background-color: #ff715b;
+  color: #e5f9e0;
+}
+
+.title {
+  font-size: 45px;
+  color: #342a21;
 }
 
 input[type="text"],
@@ -83,21 +94,28 @@ input[type="number"] {
   border: 1px solid #ccc;
   border-radius: 4px;
   position: relative;
+  background-color: #fff;
 }
 
 .details-btn {
   position: absolute;
-  right: 5px;
+  right: 25px;
   bottom: 5px;
   padding: 5px 8px;
   border-radius: 4px;
   outline: none;
   cursor: pointer;
+  background-color: #ff715b;
+  color: #e5f9e0;
 }
 
 .name {
   font-size: 18px;
   font-weight: 600;
+}
+
+h1 {
+  color: #61a0af;
 }
 
 .group-name {

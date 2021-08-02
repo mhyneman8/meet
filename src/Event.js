@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { mockData } from './mock-data';
 
 class Event extends Component {
    
@@ -37,7 +38,7 @@ class Event extends Component {
                    
                     <button 
                         onClick = { () => this.handleShowButton()}
-                        className="show-more">
+                        className="show-more details-btn">
                             {/* Show more */}
                             {!this.state.show ? 'Show Details' : 'Hide Details'}
                     </button>
@@ -45,11 +46,6 @@ class Event extends Component {
                         (<div className="details">
                             <h2>About Event: </h2>
                             <p>{event.description}</p>
-                            <button
-                                onClick = {() => this.handleShowButton()}
-                                className="show-less">
-                                    Show less
-                            </button>
                         </div> )
                     }
                 </div>                    

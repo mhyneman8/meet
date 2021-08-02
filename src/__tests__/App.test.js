@@ -6,6 +6,7 @@ import CitySearch from '../CitySearch';
 import NumberOfEvents from '../NumberOfEvents';
 import { mockData } from '../mock-data';
 import { extractLocations, getEvents } from '../api';
+import { waitFor } from '@testing-library/react';
 
 describe('<App /> component', () => {
     let AppWrapper;
@@ -27,11 +28,12 @@ describe('<App /> component', () => {
 });
 
 describe('<App /> integration', () => {
-    let AppWrapper;
-    beforeAll(() => {
-        AppWrapper = mount(<App />);
-    })
+    // let AppWrapper;
+    // beforeAll(() => {
+    //     AppWrapper = mount(<App />);
+    // })
     test('App passes "events" state as a prop to EventList', () => {
+        const AppWrapper = mount(<App />);
         const AppEventsState = AppWrapper.state('events');
 
         expect(AppEventsState).not.toEqual(undefined);
@@ -39,14 +41,17 @@ describe('<App /> integration', () => {
         AppWrapper.unmount();
     });
 
-    // test('App passes "locations" state as a prop to CitySearch', () => {
-    //     const AppLocationsState = AppWrapper.state('locations');
+    test('App passes "locations" state as a prop to CitySearch', () => {
+        const AppWrapper = mount(<App />);
+        const AppLocationsState = AppWrapper.state('locations');
 
-    //     expect(AppWrapper.find(CitySearch).props().locations).toEqual(AppLocationsState);
-    //     AppWrapper.unmount();
-    // });
+        expect(AppLocationsState).not.toEqual(undefined);
+        expect(AppWrapper.find(CitySearch).props().locations).toEqual(AppLocationsState);
+        AppWrapper.unmount();
+    });
 
     test('get list of events matching the city selected by the user', async () => {
+        const AppWrapper = mount(<App />);
         const CitySearchWrapper = AppWrapper.find(CitySearch);
         const locations = extractLocations(mockData);
 
@@ -65,6 +70,7 @@ describe('<App /> integration', () => {
     });
 
     test('get list of all events when user selects "See all cities"', async () => {
+        const AppWrapper = mount(<App />);
         const suggestionItems = AppWrapper.find(CitySearch).find('.suggestions li');
 
         await suggestionItems.at(suggestionItems.length -1).simulate('click');
@@ -73,15 +79,30 @@ describe('<App /> integration', () => {
         AppWrapper.unmount();
     });
 
-    // test('numberOfEvents state of app is updated after changes number of events', async () => {
-    //     AppWrapper.setState({ eventNumber: '15' });
-    //     const eventObject = { target: { value: '10' } };
+    test('numberOfEvents state of app is updated after changes number of events', async () => {
+        const AppWrapper = mount(<App />);
+        AppWrapper.setState({ numberOfEvents: '15' });
+        const eventObject = { target: { value: '10' } };
 
-    //     const NumberOfEventsComponent = AppWrapper.find(NumberOfEvents);
-    //     NumberOfEventsComponent.find('.number-events').simulate( 'change', eventObject);
+        const NumberOfEventsComponent = AppWrapper.find(NumberOfEvents);
+        NumberOfEventsComponent.find('.number-events').simulate( 'change', eventObject);
 
-    //     expect(AppWrapper.state('eventNumber')).toBe('10');
+        expect(AppWrapper.state('numberOfEvents')).toBe('10');
 
-    //     AppWrapper.unmount();
-    // });
+        AppWrapper.unmount();
+    });
+
+    test('length of events updates after user changes number of events', async () => {
+        const AppWrapper = mount(<App />);
+        AppWrapper.setState({ numberOfEvents: '10', locations: 'all' });
+        const eventObject = { target: { value: 1 } };
+
+        const NumberOfEventsComponenet = AppWrapper.find(NumberOfEvents);
+        await NumberOfEventsComponenet.find('.number-events').simulate('change', eventObject);
+
+        await waitFor(() => {
+            AppWrapper.update();
+            expect(AppWrapper.state('events').length).toBe(1);
+        });
+    });
 });

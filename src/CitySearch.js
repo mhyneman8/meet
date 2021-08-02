@@ -3,18 +3,18 @@ import React, { Component} from 'react';
 class CitySearch extends Component {
     state = {
         query: '',
+        // locations: this.props.locations,
         suggestions: [],
-        showSuggestions: false
+        showSuggestions: undefined
     }
 
     handleInputChanged = (event) => {
         const value = event.target.value;
-        this.setState({ showSuggestions: true });
         const suggestions = this.props.locations.filter((location) => {
             return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
         });
 
-        return this.setState({ 
+        this.setState({ 
             query: value,
             suggestions,
          });
@@ -23,6 +23,7 @@ class CitySearch extends Component {
     handleItemClicked = (suggestion) => {
         this.setState({
             query: suggestion,
+            suggestions: [],
             showSuggestions: false
         });
         this.props.updateEvents(suggestion);
@@ -31,7 +32,7 @@ class CitySearch extends Component {
     render() {
         return (
             <div className="CitySearch">
-                <label>Enter City:</label>
+                <label>Search City:</label>
                 <input
                     type="text"
                     className="city"
@@ -39,12 +40,14 @@ class CitySearch extends Component {
                     onChange={this.handleInputChanged}
                     onFocus={() => { this.setState({ showSuggestions: true }) }}
                 />
-                <label>Select a City:</label>
+                
                 <ul className="suggestions"
-                    style={this.state.showSuggestions ? {}: { display: 'none' }}>
+                    style={this.state.showSuggestions ? {}: { display: 'none' }}
+                >
                     {this.state.suggestions.map((suggestion) => (
                         <li key={suggestion}
-                            onClick={() => this.handleItemClicked(suggestion)}>
+                            onClick={() => this.handleItemClicked(suggestion)}
+                        >
                                 {suggestion}
                         </li>
                     ))}
