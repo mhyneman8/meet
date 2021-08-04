@@ -6,10 +6,14 @@ import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from './api';
 
 class App extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.updateNumberOfEvents = this.updateNumberOfEvents.bind(this);
+  // }
   state = {
     events: [],
     locations: [],
-    eventNumber: 15,
+    numberOfEvents: 15,
     currentCity: 'all'
   }
 
@@ -21,20 +25,20 @@ class App extends Component {
         events.slice(0, numberOfEvents)
       :
         events.filter((event) => event.location === location);
-      if (this.mounted) {
+      // if (this.mounted) {
         this.setState({
         events: locationEvents.slice(0, numberOfEvents),
-        currentCity: location
+        // currentCity: location
       
         });
-      }
+      // }
     });
   }
 
   updateNumberOfEvents(eventNumber) {
     this.setState({ numberOfEvents: eventNumber });
-    const { currentCity } = this.state;
-    this.updateEvents(currentCity, eventNumber);
+    const { location } = this.state;
+    this.updateEvents(location, eventNumber);
   }
 
 
@@ -67,15 +71,19 @@ class App extends Component {
         <CitySearch  
           locations={this.state.locations} 
           updateEvents={this.updateEvents}
-          numberOfEvents={this.state.numberOfEvents}  
+          // numberOfEvents={this.state.numberOfEvents}  
           events={this.state.events}
         />
 
         <NumberOfEvents 
           updateNumbeOfEvents={this.updateNumberOfEvents}
+          numberOfEvents={this.state.numberOfEvents}
         />
 
-        <EventList events={this.state.events} />
+        <EventList 
+          events={this.state.events} 
+          numberOfEvents={this.state.numberOfEvents}
+        />
       </div>
     );  
   }
