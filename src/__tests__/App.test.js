@@ -86,18 +86,18 @@ describe('<App /> integration', () => {
 
     
 
-    test('numberOfEvents state of app is updated after changes number of events', async () => {
-        const AppWrapper = mount(<App />);
-        AppWrapper.setState({ numberOfEvents: '15' });
-        const eventObject = { target: { value: '10' } };
+    // test('numberOfEvents state of app is updated after changes number of events', async () => {
+    //     const AppWrapper = mount(<App />);
+    //     AppWrapper.setState({ numberOfEvents: '15' });
+    //     const eventObject = { target: { value: '10' } };
 
-        const NumberOfEventsComponent = AppWrapper.find(NumberOfEvents);
-        NumberOfEventsComponent.find('.number-events').simulate( 'change', eventObject);
+    //     const NumberOfEventsComponent = AppWrapper.find(NumberOfEvents);
+    //     NumberOfEventsComponent.find('.number-events').simulate( 'change', eventObject);
 
-        expect(AppWrapper.state('numberOfEvents')).toBe('10');
+    //     expect(AppWrapper.state('numberOfEvents')).toBe('10');
 
-        AppWrapper.unmount();
-    });
+    //     AppWrapper.unmount();
+    // });
 
     // test('length of events updates after user changes number of events', async () => {
     //     const AppWrapper = mount(<App />);

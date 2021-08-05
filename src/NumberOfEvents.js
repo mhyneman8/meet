@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { updateNumberOfEvents } from './App.js'
 // import { mockData } from './mock-data';
 // import { getEvents } from './api';
 
@@ -14,7 +15,7 @@ class NumberOfEvents extends Component {
         this.setState({
             numberOfEvents: value
         });
-        // this.props.updateNumberOfEvents(event.target.value);
+        updateNumberOfEvents(event.target.value);
     }
 
 
