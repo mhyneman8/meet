@@ -25,20 +25,20 @@ class App extends Component {
         events.slice(0, numberOfEvents)
       :
         events.filter((event) => event.location === location);
-      // if (this.mounted) {
+      if (this.mounted) {
         this.setState({
         events: locationEvents.slice(0, numberOfEvents),
-        // currentCity: location
+        currentCity: location
       
         });
-      // }
+      }
     });
   }
 
   updateNumberOfEvents(eventNumber) {
     this.setState({ numberOfEvents: eventNumber });
-    const { location } = this.state;
-    this.updateEvents(location, eventNumber);
+    const { currentCity } = this.state;
+    this.updateEvents(currentCity, eventNumber);
   }
 
 
@@ -76,8 +76,8 @@ class App extends Component {
         />
 
         <NumberOfEvents 
-          updateNumbeOfEvents={this.updateNumberOfEvents}
-          numberOfEvents={this.state.numberOfEvents}
+          updateNumbeOfEvents={(e) => this.updateNumberOfEvents(e)}
+          // numberOfEvents={this.state.numberOfEvents}
         />
 
         <EventList 
