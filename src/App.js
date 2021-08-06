@@ -6,10 +6,6 @@ import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from './api';
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.updateNumberOfEvents = this.updateNumberOfEvents.bind(this);
-  // }
   state = {
     events: [],
     locations: [],

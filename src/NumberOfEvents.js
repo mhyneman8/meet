@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import { mockData } from './mock-data';
-// import { getEvents } from './api';
 
 class NumberOfEvents extends Component {
     
@@ -16,7 +14,6 @@ class NumberOfEvents extends Component {
         });
         this.props.updateNumberOfEvents(value);
     }
-
 
     render() {
         const numberOfEvents = this.state.numberOfEvents;
