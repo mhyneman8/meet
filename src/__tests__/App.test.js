@@ -6,7 +6,6 @@ import CitySearch from '../CitySearch';
 import NumberOfEvents from '../NumberOfEvents';
 import { mockData } from '../mock-data';
 import { extractLocations, getEvents } from '../api';
-import { waitFor } from '@testing-library/react';
 
 describe('<App /> component', () => {
     let AppWrapper;
@@ -52,7 +51,11 @@ describe('<App /> integration', () => {
 
     // test('App passes "update number of events" as a prop to NumberOfEvents', () => {
     //     const AppWrapper = mount(<App />);
-    //     const AppUpdateNumber = AppWrapper.state('update')
+    //     const AppUpdateNumber = AppWrapper.state('updateNumberOfEvents');
+
+    //     expect(AppUpdateNumber).not.toEqual(undefined);
+    //     expect(AppWrapper.find(NumberOfEvents).props().updateNumberOfEvents).toEqual(AppUpdateNumber);
+    //     AppWrapper.unmount();
     // } )
 
     test('get list of events matching the city selected by the user', async () => {
@@ -84,15 +87,15 @@ describe('<App /> integration', () => {
         AppWrapper.unmount();
     });
 
-    
 
-    // test('numberOfEvents state of app is updated after changes number of events', async () => {
-    //     const AppWrapper = mount(<App />);
-    //     AppWrapper.setState({ numberOfEvents: '15' });
-    //     const eventObject = { target: { value: '10' } };
+    test('numberOfEvents state of app is updated after changes number of events', async () => {
+        const AppWrapper = mount(<App />);
+        AppWrapper.setState({ numberOfEvents: '15' });
+        const eventObject = { target: { value: '10' } };
 
-    //     const NumberOfEventsComponent = AppWrapper.find(NumberOfEvents);
-    //     NumberOfEventsComponent.find('.number-events').simulate( 'change', eventObject);
+        const NumberOfEventsComponent = AppWrapper.find(NumberOfEvents);
+        NumberOfEventsComponent.find('#number-of-events').simulate( 'change', eventObject);
+
 
     //     expect(AppWrapper.state('numberOfEvents')).toBe('10');
 

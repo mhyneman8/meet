@@ -22,23 +22,4 @@ describe('<NumberOfEvents /> component', () => {
         expect(NumberWrapper.find('.number-events').prop('value')).toBe(number);
     })
 
-    test('change state when text input changes', () => {
-        NumberWrapper.setState({
-            numberOfEvents: '15'
-        });
-        const testNumber = { target: { value: '20'}};
-        NumberWrapper.find('.number-events').simulate('change', testNumber);
-        expect(NumberWrapper.state('numberOfEvents')).toBe('20');
-    })
 })
-
-// describe('<NumberOfEvents /> component', () => {
-//     let NumberWrapper;
-//     beforeAll(() => {
-//         NumberWrapper = mount(<NumberOfEvents />)
-//     })
-
-//     test('', () => {
-        
-//     })
-// })
