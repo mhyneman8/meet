@@ -27,10 +27,7 @@ describe('<App /> component', () => {
 });
 
 describe('<App /> integration', () => {
-    // let AppWrapper;
-    // beforeAll(() => {
-    //     AppWrapper = mount(<App />);
-    // })
+   
     test('App passes "events" state as a prop to EventList', () => {
         const AppWrapper = mount(<App />);
         const AppEventsState = AppWrapper.state('events');
@@ -48,15 +45,6 @@ describe('<App /> integration', () => {
         expect(AppWrapper.find(CitySearch).props().locations).toEqual(AppLocationsState);
         AppWrapper.unmount();
     });
-
-    // test('App passes "update number of events" as a prop to NumberOfEvents', () => {
-    //     const AppWrapper = mount(<App />);
-    //     const AppUpdateNumber = AppWrapper.state('updateNumberOfEvents');
-
-    //     expect(AppUpdateNumber).not.toEqual(undefined);
-    //     expect(AppWrapper.find(NumberOfEvents).props().updateNumberOfEvents).toEqual(AppUpdateNumber);
-    //     AppWrapper.unmount();
-    // } )
 
     test('get list of events matching the city selected by the user', async () => {
         const AppWrapper = mount(<App />);
@@ -87,7 +75,6 @@ describe('<App /> integration', () => {
         AppWrapper.unmount();
     });
 
-
     test('numberOfEvents state of app is updated after changes number of events', async () => {
         const AppWrapper = mount(<App />);
         AppWrapper.setState({ numberOfEvents: '15' });
@@ -96,23 +83,9 @@ describe('<App /> integration', () => {
         const NumberOfEventsComponent = AppWrapper.find(NumberOfEvents);
         NumberOfEventsComponent.find('#number-of-events').simulate( 'change', eventObject);
 
+        expect(AppWrapper.state('numberOfEvents')).toBe('10');
 
-    //     expect(AppWrapper.state('numberOfEvents')).toBe('10');
+        AppWrapper.unmount();
+    });
 
-    //     AppWrapper.unmount();
-    // });
-
-    // test('length of events updates after user changes number of events', async () => {
-    //     const AppWrapper = mount(<App />);
-    //     AppWrapper.setState({ numberOfEvents: '10', locations: 'all' });
-    //     const eventObject = { target: { value: 1 } };
-
-    //     const NumberOfEventsComponenet = AppWrapper.find(NumberOfEvents);
-    //     await NumberOfEventsComponenet.find('.number-events').simulate('change', eventObject);
-
-    //     await waitFor(() => {
-    //         AppWrapper.update();
-    //         expect(AppWrapper.state('events').length).toBe(1);
-    //     });
-    // });
 });
