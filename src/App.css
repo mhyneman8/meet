@@ -84,6 +84,7 @@ input[type="number"] {
   z-index: 2;
   align-self: center;
   margin: 0;
+  background-color: #eee;
   top: 43px;
   grid-template-columns: 1fr;
   font-size: 14px;
