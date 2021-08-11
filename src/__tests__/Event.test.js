@@ -13,14 +13,14 @@ describe('<Event /> component', () => {
         EventWrapper.setState({
             show: false,
         });
-        expect(EventWrapper.find('.show-more')).toHaveLength(1);
+        expect(EventWrapper.find('.details-btn')).toHaveLength(1);
     });
 
     test('Details are hidden after show-more is clicked again', () => {
         EventWrapper.setState({
             show: true,
         });
-        EventWrapper.find('.show-more').simulate('click');
+        EventWrapper.find('.details-btn').simulate('click');
         expect(EventWrapper.state('show')).toEqual(false);
     })
 
@@ -29,7 +29,7 @@ describe('<Event /> component', () => {
             show: false,
         });
         
-        EventWrapper.find('.show-more').simulate('click');
+        EventWrapper.find('.details-btn').simulate('click');
         expect(EventWrapper.state('show')).toEqual(true);
     });
 

@@ -38,7 +38,7 @@ class Event extends Component {
                    
                     <button 
                         onClick = { () => this.handleShowButton()}
-                        className="show-more details-btn">
+                        className="details-btn">
                             {/* Show more */}
                             {!this.state.show ? 'Show Details' : 'Hide Details'}
                     </button>
