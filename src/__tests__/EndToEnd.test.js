@@ -1,13 +1,13 @@
 import puppeteer from 'puppeteer';
-
+describe('show/hide an event details', () => {
     let browser;
     let page;
     beforeAll(async () => {
         jest.setTimeout(300000);
         browser = await puppeteer.launch({
-                headless: false,
-            slowMo: 250,
-            ignoreDefaultArgs: ['--disable-extentions']
+                // headless: false,
+            // slowMo: 250,
+            // ignoreDefaultArgs: ['--disable-extentions']
         });
         page = await browser.newPage();
         await page.goto('http://localhost:3000/');
@@ -17,8 +17,7 @@ import puppeteer from 'puppeteer';
     afterAll(() => {
         browser.close();
     });
-    
-describe('show/hide an event details', () => {
+
     test('An event element is collapsed by default', async () => {
         const eventDetails = await page.$('.event .details');
 
