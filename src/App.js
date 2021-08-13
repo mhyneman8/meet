@@ -4,16 +4,17 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from './api';
+import Loader from './Loader';
 
 class App extends Component {
   state = {
     events: [],
     locations: [],
     numberOfEvents: 15,
-    currentCity: 'all'
+    currentCity: 'all',
+    loading: false
   }
 
-// checked 
   updateEvents = (location, numberOfEvents) => {
     getEvents().then((events) => {
       const locationEvents = (location === 'all')
@@ -37,9 +38,12 @@ class App extends Component {
     this.updateEvents(currentCity, eventNumber);
   }
 
+  componentWillMount() {
+    this.setState({ loading: true });
+  }
 
-// checked
   componentDidMount() {
+    this.setState({ loading: false });
     const { numberOfEvents } = this.state;
     this.mounted = true;
     getEvents().then((events) => {
@@ -51,12 +55,13 @@ class App extends Component {
     });
   }
 
-  // checked
   componenetWillUnmount(){
     this.mounted = false;
   }
 
   render() {
+    if (this.state.loading)
+      return <Loader />
     return (
       
       <div className="App">
