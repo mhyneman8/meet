@@ -57,14 +57,16 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.loading)
-      return <Loader />
+    // if (this.state.loading)
+    //   return <Loader />
     return (
       
       <div className="App">
         <h1 className="title">
           Meet App
         </h1>
+
+        
 
         <CitySearch  
           locations={this.state.locations} 
@@ -77,6 +79,8 @@ class App extends Component {
           updateNumberOfEvents={(e) => this.updateNumberOfEvents(e)}
           // numberOfEvents={this.state.numberOfEvents}
         />
+
+        { this.state.loading ? <Loader /> : ''}
 
         <EventList 
           events={this.state.events} 
