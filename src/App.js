@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
+
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 import Loader from './Loader';
 import WelcomeScreen from './WelcomeScreen';
+import { InfoAlert } from './Alert';
+
+import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
+
 
 class App extends Component {
   state = {
@@ -48,13 +52,13 @@ class App extends Component {
     const { numberOfEvents } = this.state;
     this.mounted = true;
 
-    // const accessToken = localStorage.getItem('access_token');
-    // const isTokenValid = (await checkToken(accessToken)).error ? false : true;
-    // const searchParams = new URLSearchParams(window.location.search);
-    // const code = searchParams.get("code");
+    const accessToken = localStorage.getItem('access_token');
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get("code");
 
-    // this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-    // if ((code || isTokenValid) && this.mounted) {
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if ((code || isTokenValid) && this.mounted) {
 
       getEvents().then((events) => {
         if (this.mounted) {
@@ -65,20 +69,20 @@ class App extends Component {
           });
         }
       });
-      // if (!navigator.onLine) {
-      //   this.setState({
-      //     infoText:
-      //       "You are offline. Events displayed may not be up-to-date",
-      //   });
-      // } else {
-      //   this.setState({
-      //     infoText: "",
-      //   });
-      // }
-    // }
+      if (!navigator.onLine) {
+        this.setState({
+          infoText:
+            "You are offline. Events displayed may not be up-to-date",
+        });
+      } else {
+        return this.setState({
+          infoText: "",
+        });
+      }
+    }
   }
   render() {
-    if (this.state.showWelcomScreen === undefined) 
+    if (this.state.showWelcomeScreen === undefined) 
       return <div className="App" />
     
     return (
@@ -86,6 +90,8 @@ class App extends Component {
         <h1 className="title">
           Meet App
         </h1>
+
+        <InfoAlert text={this.state.infoText} />
 
         <CitySearch  
           locations={this.state.locations} 
@@ -106,8 +112,8 @@ class App extends Component {
           numberOfEvents={this.state.numberOfEvents}
         />
 
-        {/* <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
-          getAccessToken={() => { getAccessToken() }} /> */}
+        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
+          getAccessToken={() => { getAccessToken() }} />
       </div>
     );  
   }
