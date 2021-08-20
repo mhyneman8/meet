@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { ErrorAlert } from './Alert';
+import arrow from './img/arrow.svg';
+// import './App.css';
+
+
 
 class NumberOfEvents extends Component {
     
@@ -8,12 +12,18 @@ class NumberOfEvents extends Component {
     };
 
     handleInputChanged = (e) => {
-        const value = e.target.value;
+        // e.preventDefault();
+        // const value = e.target.value;
         
+        console.log(e.target.value);
+
         this.setState({
-            numberOfEvents: value
+            numberOfEvents: e.target.value,
         });
-        if (value < 1 | value > 32) {
+
+        console.log(this.state.numberOfEvents)
+        const value = this.state.numberOfEvents;
+        if (value < 1 || value > 32) {
             this.setState({
                 numberOfEvents: value,
                 infoText: 'Enter a number between 1 and 32.',
@@ -25,9 +35,7 @@ class NumberOfEvents extends Component {
             });
         }
 
-
         this.props.updateNumberOfEvents(value);
-
     }
 
     render() {
@@ -47,6 +55,12 @@ class NumberOfEvents extends Component {
                     onChange={(e) => this.handleInputChanged(e)} 
                     placeholder={numberOfEvents}
                 />
+                <button className="arrow">
+                    <img src={arrow} alt="Enter" 
+                        className="arrow-btn"
+                        onClick={this.handleInputChanged} >
+                    </img>
+                </button>
             </div>
         );
     }
