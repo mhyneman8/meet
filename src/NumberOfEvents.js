@@ -3,17 +3,16 @@ import { ErrorAlert } from './Alert';
 import arrow from './img/arrow.svg';
 // import './App.css';
 
-
-
 class NumberOfEvents extends Component {
     
     state= {
         numberOfEvents: 15,
+        infoText: '',
     };
 
     handleInputChanged = (e) => {
         // e.preventDefault();
-        // const value = e.target.value;
+        const value = e.target.value;
         
         console.log(e.target.value);
 
@@ -21,19 +20,19 @@ class NumberOfEvents extends Component {
             numberOfEvents: e.target.value,
         });
 
-        console.log(this.state.numberOfEvents)
-        const value = this.state.numberOfEvents;
+        console.log(this.numberOfEvents)
+       
         if (value < 1 || value > 32) {
             this.setState({
-                numberOfEvents: value,
                 infoText: 'Enter a number between 1 and 32.',
             });
         } else {
             return this.setState({
                 numberOfEvents: value,
+                eventNumber: value,
                 infoText: ''
             });
-        }
+        } 
 
         this.props.updateNumberOfEvents(value);
     }

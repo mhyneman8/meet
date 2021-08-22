@@ -7,7 +7,7 @@ import NumberOfEvents from './NumberOfEvents';
 import Loader from './Loader';
 import WelcomeScreen from './WelcomeScreen';
 import { InfoAlert } from './Alert';
-import EventGenre from './EventGenre';
+// import EventGenre from './EventGenre';
 
 import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
@@ -24,6 +24,7 @@ class App extends Component {
   }
 
   updateEvents = (location, numberOfEvents) => {
+    console.log('update events')
     getEvents().then((events) => {
       const locationEvents = (location === 'all')
       ?
@@ -33,17 +34,20 @@ class App extends Component {
       if (this.mounted) {
         this.setState({
         events: locationEvents.slice(0, numberOfEvents),
-        currentCity: location
+        currentCity: location,
+        numberOfEvents: numberOfEvents
         });
       }
     });
   }
 
   updateNumberOfEvents(eventNumber) {
-    this.setState({ numberOfEvents: eventNumber });
-    const { currentCity } = this.state;
-    this.updateEvents(currentCity, eventNumber);
-  }
+    console.log('update num of events')
+    
+      this.setState({ numberOfEvents: eventNumber });
+      const { currentCity } = this.state;
+      this.updateEvents(currentCity, eventNumber); 
+  };
 
   async componentDidMount() {
    
@@ -107,7 +111,9 @@ class App extends Component {
         />
 
         <NumberOfEvents 
-          updateNumberOfEvents={(e) => this.updateNumberOfEvents(e)}
+          updateNumberOfEvents={this.updateNumberOfEvents}
+          numberOfEvents={this.state.numberOfEvents}
+          updateEvents={this.updateEvents}
         />
 
         { this.state.loading ? <Loader /> : ''}
