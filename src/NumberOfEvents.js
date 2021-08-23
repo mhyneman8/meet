@@ -11,17 +11,17 @@ class NumberOfEvents extends Component {
     };
 
     handleInputChanged = (e) => {
-        // e.preventDefault();
+       
         const value = e.target.value;
         
-        console.log(e.target.value);
+        // console.log(value);
 
         this.setState({
             numberOfEvents: e.target.value,
         });
 
         console.log(this.numberOfEvents)
-       
+        
         if (value < 1 || value > 32) {
             this.setState({
                 infoText: 'Enter a number between 1 and 32.',
@@ -29,12 +29,12 @@ class NumberOfEvents extends Component {
         } else {
             return this.setState({
                 numberOfEvents: value,
-                eventNumber: value,
                 infoText: ''
             });
+            
         } 
-
-        this.props.updateNumberOfEvents(value);
+        
+        this.props.updateNumberOfEvents('' ,value);
     }
 
     render() {
@@ -51,7 +51,12 @@ class NumberOfEvents extends Component {
                     id='number-of-events' 
                     className='number-events' 
                     value={numberOfEvents}
-                    onChange={(e) => this.handleInputChanged(e)} 
+                    onChange={this.handleInputChanged}
+                    onKeyPress={(e) => {
+                        if (e.key === 'Enter') {
+                            this.handleInputChanged()
+                        }
+                    }}
                     placeholder={numberOfEvents}
                 />
                 <button className="arrow">
