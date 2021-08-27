@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ErrorAlert } from './Alert';
-// import arrow from './img/arrow.svg';
+import arrow from './img/arrow.svg';
 // import './App.css';
 
 class NumberOfEvents extends Component {
@@ -10,34 +10,32 @@ class NumberOfEvents extends Component {
         infoText: '',
     };
 
-    handleInputChanged = (event) => {
+    handleInputChanged = (e) => {
        
-        // const value = event.target.value;
-        const numberOfEvents = event.target.value;
+        const value = e.target.value;
+        
         // console.log(value);
 
-        // this.setState({
-        //     numberOfEvents: e.target.value,
-        // });
+        this.setState({
+            numberOfEvents: e.target.value,
+        });
 
-        console.log(this)
+        console.log(this.numberOfEvents)
         
-        if (numberOfEvents < 1 || numberOfEvents > 32) {
+        if (value < 1 || value > 32) {
             this.setState({
-                numberOfEvents: '',
                 infoText: 'Enter a number between 1 and 32.',
             });
         } else {
-            this.setState({
-                numberOfEvents,
-                infoText: '',
-                
+            return this.setState({
+                numberOfEvents: value,
+                infoText: ''
             });
             
         } 
-      
-        this.props.updateEvents('', numberOfEvents);
-    };
+        
+        this.props.updateNumberOfEvents('' ,value);
+    }
 
     render() {
         const numberOfEvents = this.state.numberOfEvents;
@@ -54,20 +52,19 @@ class NumberOfEvents extends Component {
                     className='number-events' 
                     value={numberOfEvents}
                     onChange={this.handleInputChanged}
+                    onKeyPress={(e) => {
+                        if (e.key === 'Enter') {
+                            this.handleInputChanged()
+                        }
+                    }}
                     placeholder={numberOfEvents}
                 />
-                {/* <button className="arrow">
+                <button className="arrow">
                     <img src={arrow} alt="Enter" 
                         className="arrow-btn"
-                        onClick={this.handleInputChanged}
-                        onKeyPress={(e) => {
-                            if (e.key === 'Enter') {
-                                this.handleInputChanged(e)
-                            }
-                        }}
-                        >
+                        onClick={this.handleInputChanged} >
                     </img>
-                </button> */}
+                </button>
             </div>
         );
     }

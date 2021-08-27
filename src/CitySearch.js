@@ -33,7 +33,6 @@ class CitySearch extends Component {
         //     query: value,
         //     suggestions,
         //  });
-        this.props.updateEvents(value, null);
     };
 
     handleItemClicked = (suggestion) => {
