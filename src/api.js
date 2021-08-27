@@ -21,7 +21,7 @@ const checkToken = async (accessToken) => {
         .then((res) => res.json())
         .catch((error) => error.json());
 
-    return result;
+    return result
 }
 
 const extractLocations = (events) => {
@@ -39,12 +39,12 @@ const getEvents = async () => {
       return mockData;
     }
 
-    if (!navigator.onLine) {
-        const data = localStorage.getItem("lastEvents");
-        NProgress.done();
+    // if (!navigator.onLine) {
+    //     const data = localStorage.getItem("lastEvents");
+    //     NProgress.done();
 
-        return data?JSON.parse(data).events:[];
-    }
+    //     return data?JSON.parse(data).events:[];
+    // }
 
     const token = await getAccessToken();
   

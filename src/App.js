@@ -18,7 +18,7 @@ class App extends Component {
     numberOfEvents: 15,
     currentCity: 'all',
     loading: true,
-    showWelcomeScreen: undefined
+    // showWelcomeScreen: undefined
   }
 
   updateEvents = (location, numberOfEvents) => {
@@ -42,6 +42,10 @@ class App extends Component {
     const { currentCity } = this.state;
     this.updateEvents(currentCity, eventNumber);
   }
+
+  // componentWillMount() {
+  //   this.setState({ loading: true });
+  // }
 
   async componentDidMount() {
    
@@ -87,19 +91,21 @@ class App extends Component {
           Meet App
         </h1>
 
+        <InfoAlert text={this.state.infoText} />
+
         <CitySearch  
           locations={this.state.locations} 
           updateEvents={this.updateEvents}
+          // numberOfEvents={this.state.numberOfEvents}  
           events={this.state.events}
         />
 
         <NumberOfEvents 
           updateNumberOfEvents={(e) => this.updateNumberOfEvents(e)}
+          // numberOfEvents={this.state.numberOfEvents}
         />
 
         { this.state.loading ? <Loader /> : ''}
-        
-        <InfoAlert text={this.state.infoText} />
 
         <EventList 
           events={this.state.events} 
