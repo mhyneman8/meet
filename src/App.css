@@ -78,23 +78,6 @@ input[type="number"] {
   text-align: center;
 }
 
-.arrow {
-  display: inline-block;
-  margin: 5px;
-  border-radius: 4px;
-  box-shadow: 1px 1px 3px 0.3px #888888;
-  border: 0.5px solid #ccc;
-  transition: all 0.3s ease 0s;
-}
-.arrow:hover {
-  background-color: #bbb;
-}
-
-.arrow-btn {
-  height: 15px;
-  
-}
-
 .Alert {
   position: relative !important;
   top: 0 !important;
@@ -151,6 +134,7 @@ input[type="number"] {
 
 .event {
   padding: 10px 10px 35px;
+  
   text-align: left;
   border: 1px solid #ccc;
   border-radius: 4px;
