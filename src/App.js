@@ -25,7 +25,6 @@ class App extends Component {
 
   updateEvents = (location, numberOfEvents) => {
     console.log('update events')
-    console.log(numberOfEvents)
     getEvents().then((events) => {
       const locationEvents = (location === 'all')
       ?
@@ -42,17 +41,13 @@ class App extends Component {
     });
   }
 
-  // updateNumberOfEvents(eventNumber) {
-  //   console.log('update num of events')
+  updateNumberOfEvents(eventNumber) {
+    console.log('update num of events')
     
-  //     this.setState({ numberOfEvents: eventNumber });
-  //     const { currentCity } = this.state;
-  //     this.updateEvents(currentCity, eventNumber); 
-  // };
-  updateNumberOfEvents = newCount => {
-    const { currentCity } = this.state;
-    this.updateEvents(currentCity, newCount);
-  }
+      this.setState({ numberOfEvents: eventNumber });
+      const { currentCity } = this.state;
+      this.updateEvents(currentCity, eventNumber); 
+  };
 
   async componentDidMount() {
    
@@ -118,7 +113,7 @@ class App extends Component {
         <NumberOfEvents 
           updateNumberOfEvents={this.updateNumberOfEvents}
           numberOfEvents={this.state.numberOfEvents}
-          // updateEvents={this.updateEvents}
+          updateEvents={this.updateEvents}
         />
 
         { this.state.loading ? <Loader /> : ''}
