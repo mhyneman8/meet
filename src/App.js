@@ -91,16 +91,16 @@ class App extends Component {
           });
         }
       });
-      if (!navigator.onLine) {
-        this.setState({
-          infoText:
-            "You are offline. Events displayed may not be up-to-date",
-        });
-      } else {
-        return this.setState({
-          infoText: "",
-        });
-      }
+    //   if (!navigator.onLine) {
+    //     this.setState({
+    //       infoText:
+    //         "You are offline. Events displayed may not be up-to-date",
+    //     });
+    //   } else {
+    //     return this.setState({
+    //       infoText: "",
+    //     });
+    //   }
     }
   }
 
@@ -131,7 +131,7 @@ class App extends Component {
         <CitySearch  
           locations={this.state.locations} 
           updateEvents={this.updateEvents}
-          events={this.state.events}
+          numberOfEvents={this.state.numberOfEvents}
         />
 
         <NumberOfEvents 
@@ -173,7 +173,7 @@ class App extends Component {
 
         <EventList 
           events={this.state.events} 
-          numberOfEvents={this.state.numberOfEvents}
+          // numberOfEvents={this.state.numberOfEvents}
         />
 
         <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
