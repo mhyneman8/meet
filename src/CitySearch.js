@@ -1,29 +1,20 @@
-import { findLastKey } from 'lodash';
 import React, { Component} from 'react';
 import { InfoAlert } from './Alert';
 
 class CitySearch extends Component {
     state = {
         query: '',
-        // locations: this.props.locations,
+        locations: this.props.locations,
         suggestions: [],
-        showSuggestions: false,
-        infoText: ''
+        showSuggestions: undefined
     }
 
     handleInputChanged = (event) => {
         const value = event.target.value;
-        this.setState({ showSuggestions: true });
+        this.setState({showSuggestions:true});
         const suggestions = this.props.locations.filter((location) => {
             return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
         });
-        if (value === '') {
-            this.setState({
-                suggestions: [],
-                query: '',
-                showSuggestions: false
-            })
-        }
         if (suggestions.length === 0) {
             this.setState({
                 query: value,
