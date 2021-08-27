@@ -1,49 +1,52 @@
-// import React, { useEffect, useState} from 'react';
-// import {
-//     PieChart, Pie, Cell, ResponsiveContainer
-// } from 'recharts';
+import React, { useEffect, useState} from 'react';
+import {
+    PieChart, Pie, Cell, ResponsiveContainer, Legend
+} from 'recharts';
+import './App.css';
 
-// const EventGenre = ({ events }) => {
+const EventGenre = ({ events }) => {
     
-//     const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'Angular JS'];
-//     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+    const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'Angular JS'];
+    const COLORS = ['#342a21', '#61a0af', '#FF715b', '#FFFFFF'];
 
-//     const getData = () => {
-//         // const { events } = this.useState;
-//         let data = genres.map((genre) => {
-//             const value = events.filter((event) => event.summary.split(' ').includes(genre)).length;
+    const getData = () => {
+        // const { events } = this.useState;
+        let data = genres.map((genre) => {
+            const value = events.filter((event) => event.summary.split(' ').includes(genre)).length;
 
-//             return { name: genre, value };
-//         });
-//         data = data.filter(data => data.value)
-//         return data;
-//     };
+            return { name: genre, value };
+        });
+        data = data.filter(data => data.value)
+        return data;
+    };
 
     
-//     useEffect(() => { setData(() => getData()) }, [events] );
-//     const [data, setData] = useState([]);
+    useEffect(() => { setData(() => getData()) }, [events] );
+    const [data, setData] = useState([]);
 
-//     return (
-//         <ResponsiveContainer width="100%" height="100%">
-//             <PieChart width={400} height={400}>
-//                 <Pie
-//                     data={data}
-//                     cx="50%"
-//                     cy="50%"
-//                     labelLine={false}
-//                     label={({name, percent}) => `${name} ${(percent * 100).toFixed(0)}%`}
-//                     outerRadius={80}
-//                     fill="#8884d8"
-//                     dataKey="value"
-//                 >
-//                     {data.map((entry, index) => (
-//                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-//                     ))}
-//                 </Pie>
-//             </PieChart>
-//         </ResponsiveContainer>
+    return (
+        <ResponsiveContainer height={400}>
+            <PieChart width={400} height={400}>
+                <Pie
+                    data={data}
+                    cx={200}
+                    cy={200}
+                    labelLine={false}
+                    innerRadius={30}
+                    label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
+                    outerRadius={70}
+                    // fill="#8884d8"
+                    dataKey="value"
+                >
+                    {data.map((index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                </Pie>
+                <Legend align="center" className="legend" height={45} />
+            </PieChart>
+        </ResponsiveContainer>
 
-//     );
-// }
+    );
+}
 
-// export default EventGenre;
+export default EventGenre;

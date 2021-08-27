@@ -7,7 +7,7 @@ import NumberOfEvents from './NumberOfEvents';
 import Loader from './Loader';
 import WelcomeScreen from './WelcomeScreen';
 import { InfoAlert } from './Alert';
-// import EventGenre from './EventGenre';
+import EventGenre from './EventGenre';
 
 import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
@@ -23,23 +23,35 @@ class App extends Component {
     showWelcomeScreen: undefined
   }
 
-  updateEvents = (location, numberOfEvents) => {
+  updateEvents = (location, eventCount) => {
     console.log('update events')
-    console.log(numberOfEvents)
+    console.log(eventCount)
 
+    let locationEvents;
     getEvents().then((events) => {
-      const locationEvents = (location === 'all')
-      ?
-        events.slice(0, numberOfEvents)
-      :
-        events.filter((event) => event.location === location);
+      if (location === 'all' && eventCount === 0) {
+        locationEvents = events;
+      } else if (location !== 'all' && eventCount === 0) {
+        locationEvents = events;
+      } else if (location === '' && eventCount > 0) {
+        locationEvents = events.filter((event) => event.location === location);
+      } else if (location === '' && eventCount === '') {
+        locationEvents = events;
+      }
+
+      // const locationEvents = (location === 'all')
+      // ?
+      //   events.slice(0, numberOfEvents)
+      // :
+      //   events.filter((event) => event.location === location);
       // if (this.mounted) {
-        const filteredEvents = locationEvents.slice(0, numberOfEvents);
+        // const filteredEvents = locationEvents.slice(0, numberOfEvents);
         this.setState({
           // events: filteredEvents,
-          events: locationEvents.slice(0, numberOfEvents),
+          events: locationEvents,
+          // .slice(0, numberOfEvents),
           currentCity: location,
-          numberOfEvents: numberOfEvents
+          numberOfEvents: eventCount
         });
       // }
     });
@@ -92,6 +104,10 @@ class App extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
   getData = () => {
     const { locations, events } = this.state;
     const data = locations.map((location) => {
@@ -132,7 +148,7 @@ class App extends Component {
 
         <div className="data-vis-wrapper">
 
-          {/* <EventGenre events={this.events} /> */}
+          <EventGenre events={this.state.events} />
 
           <ResponsiveContainer height={400} >
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
