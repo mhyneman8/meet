@@ -46,6 +46,12 @@ class CitySearch extends Component {
         // this.props.updateCitySearch(suggestion);
     };
 
+    handleClose = () => {
+        this.setState({
+            showSuggestions: false
+        });
+    }
+
     render() {
         return (
             <div className="CitySearch">
@@ -63,6 +69,10 @@ class CitySearch extends Component {
                 <ul className="suggestions"
                     style={this.state.showSuggestions ? {}: { display: 'none' }}
                 >
+                    <span 
+                        className="close"
+                        onClick={() => this.handleClose()}
+                    >x</span>
                     {this.state.suggestions.map((suggestion) => (
                         <li key={suggestion}
                             onClick={() => this.handleItemClicked(suggestion)}
