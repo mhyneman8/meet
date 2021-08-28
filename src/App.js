@@ -5,7 +5,7 @@ import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 import Loader from './Loader';
-import WelcomeScreen from './WelcomeScreen';
+// import WelcomeScreen from './WelcomeScreen';
 
 class App extends Component {
   state = {
@@ -86,8 +86,8 @@ class App extends Component {
     // }
   }
   render() {
-    if (this.state.showWelcomScreen === undefined) 
-      return <div className="App" />
+    // if (this.state.showWelcomScreen === undefined) 
+    //   return <div className="App" />
     
     return (
       <div className="App">
