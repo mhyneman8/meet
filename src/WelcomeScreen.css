@@ -1,34 +1,9 @@
 .WelcomeScreen {
     position: fixed;
-    width: 89vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     top: 0;
-    background: #e5f9e0;
-}
-
-h1 {
-    color: #342a21;
-    font-size: 50px;
-    margin-top: 109px;
-}
-@media all and (max-width: 500px) {
-    h1 {
-        font-size: 30px;
-    }
-}
-
-h4 {
-    width: 400px;
-    margin: 30px auto;
-    font-size: 20px;
-    color: #61a0af;
-}
-
-@media all and (max-width: 500px) {
-    h4 {
-        font-size: 16px;
-        width: 250px;
-    }
+    background: white;
 }
 
 .login-button {
@@ -44,7 +19,6 @@ h4 {
 }
 
 .google-btn {
-    position: relative;
     width: 184px;
     height: 42px;
     margin: 1rem;
@@ -81,15 +55,12 @@ h4 {
 
 .btn-text {
     float: right;
-    top: -10px;
-    left: 10px;
-    position: relative;
     color: #fff;
     font-size: 14px;
     letter-spacing: 0.2px;
     font-family: "Roboto";
     background-color: #4285f4;
-    width: 78%;
+    width: 80%;
     height: 100%;
     text-align: center;
 }
