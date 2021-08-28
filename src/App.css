@@ -28,7 +28,7 @@ label {
 
 .number-label {
   display: block;
-  padding-top: 9px;
+  padding-top: 28px;
 }
 
 p {
@@ -63,6 +63,10 @@ input[type="number"] {
   align-self: center;
   height: 38px;
   text-align: center;
+}
+
+.Alert {
+  position: relative !important;
 }
 
 .city {
