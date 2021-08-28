@@ -24,7 +24,6 @@ ul {
 
 label {
   font-weight: 600;
-  font-size: 30px
 }
 
 .number-label {
@@ -68,10 +67,6 @@ input[type="number"] {
 
 .Alert {
   position: relative !important;
-  top: 0 !important;
-  font-size: 12px;
-  margin-top: -5px;
-  min-height: 20px;
 }
 
 .city {
@@ -89,10 +84,12 @@ input[type="number"] {
 
 .suggestions {
   width: 250px;
+  position: absolute;
   z-index: 2;
   align-self: center;
   margin: 0;
   background-color: #eee;
+  top: 59px;
   grid-template-columns: 1fr;
   font-size: 14px;
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
