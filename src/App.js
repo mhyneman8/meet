@@ -15,6 +15,7 @@ class App extends Component {
 
 // checked 
   updateEvents = (location, numberOfEvents) => {
+    console.log('events');
     getEvents().then((events) => {
       const locationEvents = (location === 'all')
       ?
@@ -31,7 +32,14 @@ class App extends Component {
     });
   }
 
+  // updateCitySearch = (location) => {
+  //   this.setState({ currentCity: location });
+  //   const { numberOfEvents } = this.state;
+  //   this.updateEvents(location, numberOfEvents);
+  // }
+
   updateNumberOfEvents(eventNumber) {
+    console.log('NumberOfEvents')
     this.setState({ numberOfEvents: eventNumber });
     const { currentCity } = this.state;
     this.updateEvents(currentCity, eventNumber);

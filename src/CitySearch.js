@@ -3,13 +3,14 @@ import React, { Component} from 'react';
 class CitySearch extends Component {
     state = {
         query: '',
-        locations: this.props.locations,
+        // locations: this.props.locations,
         suggestions: [],
-        showSuggestions: undefined
+        showSuggestions: false
     }
 
     handleInputChanged = (event) => {
         const value = event.target.value;
+        this.setState({ showSuggestions: true });
         const suggestions = this.props.locations.filter((location) => {
             return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
         });
@@ -23,10 +24,12 @@ class CitySearch extends Component {
     handleItemClicked = (suggestion) => {
         this.setState({
             query: suggestion,
-            suggestions: [],
-            showSuggestions: false
+            // suggestions: [],
+            showSuggestions: false,
+           
         });
-        this.props.updateEvents(suggestion);
+        this.props.updateEvents(suggestion, null);
+        // this.props.updateCitySearch(suggestion);
     };
 
     render() {
@@ -51,7 +54,7 @@ class CitySearch extends Component {
                                 {suggestion}
                         </li>
                     ))}
-                    <li
+                    <li key={'all'}
                         onClick={() => this.handleItemClicked("all")}>
                         <b>See all cities</b>
                     </li>
