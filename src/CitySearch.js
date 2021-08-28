@@ -18,13 +18,13 @@ class CitySearch extends Component {
         if ( suggestions.length === 0) {
             this.setState({
                 query: '',
-                infoText: 'We can\'t find the city you are looking for. Please try another city.'
+                infoText: 'We can\'t find that city. Please try another city.',
             });
         } else {
             this.setState({
                 query: value,
                 suggestions,
-                showSuggestions: false,
+                // showSuggestions: false,
                 infoText: ''
             });
         }
@@ -53,6 +53,7 @@ class CitySearch extends Component {
                 <InfoAlert text={this.state.infoText} />
 
                 <label>Search City:</label>
+                <InfoAlert text={this.state.infoText} />
                 <input
                     type="text"
                     className="city"
