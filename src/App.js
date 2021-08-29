@@ -25,12 +25,24 @@ class App extends Component {
 
   updateEvents = (location, numberOfEvents) => {
     console.log('events');
+
+    let locationEvents;
     getEvents().then((events) => {
-      const locationEvents = (location === 'all')
-      ?
-        events.slice(0, numberOfEvents)
-      :
-        events.filter((event) => event.location === location);
+      if (location === 'all' && numberOfEvents === 0) {
+        locationEvents = events;
+      } else if (location !== 'all' && numberOfEvents === 0) {
+        locationEvents = events;
+      } else if (location === '' && numberOfEvents > 0) {
+        locationEvents = events.filter((event) => event.location === location);
+      } else if (location === '' && numberOfEvents === '') {
+        locationEvents = events;
+      }
+
+      // const locationEvents = (location === 'all')
+      // ?
+      //   events.slice(0, numberOfEvents)
+      // :
+      //   events.filter((event) => event.location === location);
       // if (this.mounted) {
         this.setState({
         events: locationEvents.slice(0, numberOfEvents),
@@ -139,7 +151,7 @@ class App extends Component {
 
         <div className="data-vis-wrapper">
 
-          {/* <EventGenre events={this.events} /> */}
+          <EventGenre events={this.state.events} />
 
           <ResponsiveContainer height={400} >
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
