@@ -160,7 +160,7 @@ class App extends Component {
           <EventGenre events={this.state.events} />
 
           <ResponsiveContainer height={350} >
-            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+            <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 0 }}>
               <CartesianGrid />
 
               <XAxis type="category" 
@@ -174,7 +174,7 @@ class App extends Component {
               />
 
               <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-              <Scatter data={this.getData()} fill="#8884d8" />
+              <Scatter data={this.getData()} fill="#ff715b" />
             </ScatterChart>
           </ResponsiveContainer>
         </div>
