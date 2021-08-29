@@ -153,6 +153,7 @@ input[type="number"] {
   cursor: pointer;
   background-color: #ff715b;
   color: #e5f9e0;
+  border-color: #d9614e;
 }
 
 .name {

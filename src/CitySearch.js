@@ -39,6 +39,7 @@ class CitySearch extends Component {
         this.setState({
             query: suggestion,
             // suggestions: [],
+            infoText: '',
             showSuggestions: false,
            
         });

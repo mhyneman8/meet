@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import './App.css';
+import './nprogress.css';
+
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 import Loader from './Loader';
-// import WelcomeScreen from './WelcomeScreen';
+import WelcomeScreen from './WelcomeScreen';
+import { InfoAlert } from './Alert';
+
+import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 
 class App extends Component {
   state = {
     events: [],
     locations: [],
-    numberOfEvents: 15,
+    numberOfEvents: 14,
     currentCity: 'all',
     loading: true,
-    // showWelcomeScreen: undefined
+    showWelcomeScreen: undefined
   }
 
   updateEvents = (location, numberOfEvents) => {
@@ -25,20 +29,15 @@ class App extends Component {
         events.slice(0, numberOfEvents)
       :
         events.filter((event) => event.location === location);
-      if (this.mounted) {
+      // if (this.mounted) {
         this.setState({
         events: locationEvents.slice(0, numberOfEvents),
-        currentCity: location
+        currentCity: location,
+        numberOfEvents: numberOfEvents
         });
-      }
+      // }
     });
   }
-
-  // updateCitySearch = (location) => {
-  //   this.setState({ currentCity: location });
-  //   const { numberOfEvents } = this.state;
-  //   this.updateEvents(location, numberOfEvents);
-  // }
 
   updateCitySearch(location) {
     console.log('CitySearch');
@@ -63,13 +62,13 @@ class App extends Component {
     const { numberOfEvents } = this.state;
     this.mounted = true;
 
-    // const accessToken = localStorage.getItem('access_token');
-    // const isTokenValid = (await checkToken(accessToken)).error ? false : true;
-    // const searchParams = new URLSearchParams(window.location.search);
-    // const code = searchParams.get("code");
+    const accessToken = localStorage.getItem('access_token');
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get("code");
 
-    // this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-    // if ((code || isTokenValid) && this.mounted) {
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if ((code || isTokenValid) && this.mounted) {
 
       getEvents().then((events) => {
         if (this.mounted) {
@@ -80,6 +79,7 @@ class App extends Component {
           });
         }
       });
+    }
       // if (!navigator.onLine) {
       //   this.setState({
       //     infoText:
@@ -92,9 +92,14 @@ class App extends Component {
       // }
     // }
   }
+
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
   render() {
-    // if (this.state.showWelcomScreen === undefined) 
-    //   return <div className="App" />
+    if (this.state.showWelcomScreen === undefined) 
+      return <div className="App" />
     
     return (
       <div className="App">
@@ -116,14 +121,16 @@ class App extends Component {
         />
 
         { this.state.loading ? <Loader /> : ''}
-
+        { !navigator.onLine ? <InfoAlert text="You are currently offline. The data shown may not be current." /> : '' }
+        
         <EventList 
           events={this.state.events} 
-          numberOfEvents={this.state.numberOfEvents}
+          // numberOfEvents={this.state.numberOfEvents}
         />
 
-        {/* <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
-          getAccessToken={() => { getAccessToken() }} /> */}
+        <WelcomeScreen 
+          showWelcomeScreen={this.state.showWelcomeScreen}
+          getAccessToken={() => { getAccessToken() }} />
       </div>
     );  
   }

@@ -34,9 +34,17 @@ const extractLocations = (events) => {
 const getEvents = async () => {
     NProgress.start();
   
+    // returns mock data if using local host
     if (window.location.href.startsWith('http://localhost')) {
       NProgress.done();
       return mockData;
+    }
+
+    // returns previously cached events when online
+    if (!navigator.onLine) {
+        const data = localStorage.getItem('lastEvents');
+        NProgress.done();
+        return data ? JSON.parse(data).events : [];
     }
 
     const token = await getAccessToken();
