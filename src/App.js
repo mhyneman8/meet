@@ -40,6 +40,13 @@ class App extends Component {
   //   this.updateEvents(location, numberOfEvents);
   // }
 
+  updateCitySearch(location) {
+    console.log('CitySearch');
+    this.setState({ currentCity: location });
+    const { numberOfEvents } = this.state;
+    this.updateEvents(location, numberOfEvents);
+  }
+
   updateNumberOfEvents(eventNumber) {
     console.log('NumberOfEvents')
     this.setState({ numberOfEvents: eventNumber });
@@ -96,10 +103,11 @@ class App extends Component {
         </h1>
 
         <CitySearch  
+          updateCitySearch={(e) => this.updateCitySearch(e)}
           locations={this.state.locations} 
-          updateEvents={this.updateEvents}
+          // updateEvents={this.updateEvents}
           // numberOfEvents={this.state.numberOfEvents}  
-          events={this.state.events}
+          // events={this.state.events}
         />
 
         <NumberOfEvents 

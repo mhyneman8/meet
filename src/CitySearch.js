@@ -42,8 +42,8 @@ class CitySearch extends Component {
             showSuggestions: false,
            
         });
-        this.props.updateEvents(suggestion);
-        // this.props.updateCitySearch(suggestion);
+        // this.props.updateEvents(suggestion);
+        this.props.updateCitySearch(suggestion);
     };
 
     handleClose = () => {
