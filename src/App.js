@@ -6,7 +6,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import Loader from './Loader';
-import WelcomeScreen from './WelcomeScreen';
+// import WelcomeScreen from './WelcomeScreen';
 import { InfoAlert } from './Alert';
 import EventGenre from './EventGenre';
 
@@ -20,23 +20,29 @@ class App extends Component {
     numberOfEvents: 14,
     currentCity: 'all',
     loading: true,
-    showWelcomeScreen: undefined
+    // showWelcomeScreen: undefined
   }
 
   updateEvents = (location, numberOfEvents) => {
     console.log('events');
 
-    let locationEvents;
+    // let locationEvents;
     getEvents().then((events) => {
-      if (location === 'all' && numberOfEvents === 0) {
-        locationEvents = events;
-      } else if (location !== 'all' && numberOfEvents === 0) {
-        locationEvents = events;
-      } else if (location === '' && numberOfEvents > 0) {
-        locationEvents = events.filter((event) => event.location === location);
-      } else if (location === '' && numberOfEvents === '') {
-        locationEvents = events;
-      }
+      const locationEvents = (location === 'all')
+      ?
+        events.slice(0, numberOfEvents)
+      :
+        events.filter((event) => event.location === location);
+
+      // if (location === 'all' && numberOfEvents === 0) {
+      //   locationEvents = events;
+      // } else if (location !== 'all' && numberOfEvents === 0) {
+      //   locationEvents = events;
+      // } else if (location === '' && numberOfEvents > 0) {
+      //   locationEvents = events.filter((event) => event.location === location);
+      // } else if (location === '' && numberOfEvents === '') {
+      //   locationEvents = events;
+      // }
 
       // const locationEvents = (location === 'all')
       // ?
@@ -76,13 +82,13 @@ class App extends Component {
     const { numberOfEvents } = this.state;
     this.mounted = true;
 
-    const accessToken = localStorage.getItem('access_token');
-    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = searchParams.get("code");
+    // const accessToken = localStorage.getItem('access_token');
+    // const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    // const searchParams = new URLSearchParams(window.location.search);
+    // const code = searchParams.get("code");
 
-    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-    if ((code || isTokenValid) && this.mounted) {
+    // this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    // if ((code || isTokenValid) && this.mounted) {
 
       getEvents().then((events) => {
         if (this.mounted) {
@@ -105,11 +111,11 @@ class App extends Component {
       //   });
       // }
     // }
-  }
+  // }
 
-  componentWillUnmount() {
-    this.mounted = false;
-  }
+  // componentWillUnmount() {
+  //   this.mounted = false;
+  // }
 
   getData = () => {
     const { locations, events } = this.state;
@@ -122,8 +128,8 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.showWelcomScreen === undefined) 
-      return <div className="App" />
+    // if (this.state.showWelcomScreen === undefined) 
+    //   return <div className="App" />
     
     return (
       <div className="App">
@@ -145,7 +151,7 @@ class App extends Component {
         />
 
         { this.state.loading ? <Loader /> : ''}
-        { !navigator.onLine ? <InfoAlert text="You are currently offline. The data shown may not be current." /> : '' }
+        {/* { !navigator.onLine ? <InfoAlert text="You are currently offline. The data shown may not be current." /> : '' } */}
 
         <h4>Events in each city</h4>
 
@@ -153,7 +159,7 @@ class App extends Component {
 
           <EventGenre events={this.state.events} />
 
-          <ResponsiveContainer height={400} >
+          <ResponsiveContainer height={350} >
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
               <CartesianGrid />
 
@@ -179,9 +185,9 @@ class App extends Component {
           // numberOfEvents={this.state.numberOfEvents}
         />
 
-        <WelcomeScreen 
+        {/* <WelcomeScreen 
           showWelcomeScreen={this.state.showWelcomeScreen}
-          getAccessToken={() => { getAccessToken() }} />
+          getAccessToken={() => { getAccessToken() }} /> */}
       </div>
     );  
   }
