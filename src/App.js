@@ -82,6 +82,16 @@ class App extends Component {
     const { numberOfEvents } = this.state;
     this.mounted = true;
 
+    if (!navigator.onLine) {
+      this.setState({
+        infoText: 'You are currently offline. The data shown may not be current.'
+      });
+    } else {
+      this.setState({
+        infoText: '',
+      });
+    }
+
     // const accessToken = localStorage.getItem('access_token');
     // const isTokenValid = (await checkToken(accessToken)).error ? false : true;
     // const searchParams = new URLSearchParams(window.location.search);
@@ -151,7 +161,7 @@ class App extends Component {
         />
 
         { this.state.loading ? <Loader /> : ''}
-        {/* { !navigator.onLine ? <InfoAlert text="You are currently offline. The data shown may not be current." /> : '' } */}
+        <InfoAlert text={this.state.text} /> 
 
         <h4>Events in each city</h4>
 
@@ -159,7 +169,7 @@ class App extends Component {
 
           <EventGenre events={this.state.events} />
 
-          <ResponsiveContainer height={350} >
+          <ResponsiveContainer height={350} width={500}>
             <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 0 }}>
               <CartesianGrid />
 

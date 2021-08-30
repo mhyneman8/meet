@@ -4,7 +4,7 @@ import { ErrorAlert } from './Alert';
 class NumberOfEvents extends Component {
     
     state= {
-        numberOfEvents: 15,
+        numberOfEvents: 14,
         errorText: ''
     };
 
