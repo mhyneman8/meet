@@ -6,7 +6,7 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import Loader from './Loader';
-// import WelcomeScreen from './WelcomeScreen';
+import WelcomeScreen from './WelcomeScreen';
 import { InfoAlert } from './Alert';
 import EventGenre from './EventGenre';
 
@@ -20,7 +20,7 @@ class App extends Component {
     numberOfEvents: 14,
     currentCity: 'all',
     loading: true,
-    // showWelcomeScreen: undefined
+    showWelcomeScreen: undefined
   }
 
   updateEvents = (location, numberOfEvents) => {
@@ -92,13 +92,13 @@ class App extends Component {
       });
     }
 
-    // const accessToken = localStorage.getItem('access_token');
-    // const isTokenValid = (await checkToken(accessToken)).error ? false : true;
-    // const searchParams = new URLSearchParams(window.location.search);
-    // const code = searchParams.get("code");
+    const accessToken = localStorage.getItem('access_token');
+    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get("code");
 
-    // this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-    // if ((code || isTokenValid) && this.mounted) {
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    if ((code || isTokenValid) && this.mounted) {
 
       getEvents().then((events) => {
         if (this.mounted) {
@@ -121,7 +121,7 @@ class App extends Component {
       //   });
       // }
     // }
-  // }
+  }
 
   // componentWillUnmount() {
   //   this.mounted = false;
@@ -138,8 +138,8 @@ class App extends Component {
   }
 
   render() {
-    // if (this.state.showWelcomScreen === undefined) 
-    //   return <div className="App" />
+    if (this.state.showWelcomScreen === undefined) 
+      return <div className="App" />
     
     return (
       <div className="App">
@@ -195,9 +195,10 @@ class App extends Component {
           // numberOfEvents={this.state.numberOfEvents}
         />
 
-        {/* <WelcomeScreen 
+        <WelcomeScreen 
           showWelcomeScreen={this.state.showWelcomeScreen}
-          getAccessToken={() => { getAccessToken() }} /> */}
+          getAccessToken={() => { getAccessToken() }} 
+        />
       </div>
     );  
   }
