@@ -34,13 +34,11 @@ class App extends Component {
       :
         events.filter((event) => event.location === location);
 
-      // if (this.mounted) {
         this.setState({
         events: locationEvents.slice(0, numberOfEvents),
         currentCity: location,
         numberOfEvents: numberOfEvents
         });
-      // }
     });
   }
 
@@ -58,24 +56,10 @@ class App extends Component {
     this.updateEvents(currentCity, eventNumber);
   }
 
-  // componentWillMount() {
-  //   this.setState({ loading: true });
-  // }
-
   async componentDidMount() {
    
     const { numberOfEvents } = this.state;
     this.mounted = true;
-
-    // if (!navigator.onLine) {
-    //   this.setState({
-    //     infoText: 'You are currently offline. The data shown may not be current.'
-    //   });
-    // } else {
-    //   this.setState({
-    //     infoText: '',
-    //   });
-    // }
 
     const accessToken = localStorage.getItem('access_token');
     const isTokenValid = (await checkToken(accessToken)).error ? false : true;
@@ -168,11 +152,9 @@ class App extends Component {
             </ScatterChart>
           </ResponsiveContainer>
         </div>
-        
 
         <EventList 
           events={this.state.events} 
-          // numberOfEvents={this.state.numberOfEvents}
         />
 
         <WelcomeScreen 
@@ -182,7 +164,6 @@ class App extends Component {
       </div>
     );  
   }
-  
 }
 
 export default App;

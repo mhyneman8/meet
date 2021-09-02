@@ -43,11 +43,11 @@ const getEvents = async () => {
     }
 
     // returns previously cached events when online
-    // if (!navigator.onLine) {
-    //     const data = localStorage.getItem('lastEvents');
-    //     NProgress.done();
-    //     return data ? JSON.parse(data).events : [];
-    // }
+    if (!navigator.onLine) {
+        const data = localStorage.getItem('lastEvents');
+        NProgress.done();
+        return data ? JSON.parse(data).events : [];
+    }
 
     const token = await getAccessToken();
   

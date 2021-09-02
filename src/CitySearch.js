@@ -4,7 +4,6 @@ import { InfoAlert } from './Alert';
 class CitySearch extends Component {
     state = {
         query: '',
-        // locations: this.props.locations,
         suggestions: [],
         showSuggestions: false
     }
@@ -24,26 +23,18 @@ class CitySearch extends Component {
             this.setState({
                 query: value,
                 suggestions,
-                // showSuggestions: false,
                 infoText: ''
             });
         }
-
-        // this.setState({ 
-        //     query: value,
-        //     suggestions,
-        //  });
     };
 
     handleItemClicked = (suggestion) => {
         this.setState({
             query: suggestion,
-            // suggestions: [],
             infoText: '',
             showSuggestions: false,
            
         });
-        // this.props.updateEvents(suggestion);
         this.props.updateCitySearch(suggestion);
     };
 

@@ -11,7 +11,6 @@ const EventGenre = ({ events }) => {
     const COLORS = ['#61a0af', '#342a21', '#FF715b', '#592e83', '#679436'];
 
     const getData = () => {
-        // const { events } = this.useState;
         let data = genres.map((genre) => {
             const value = events.filter((event) => event.summary.split(' ').includes(genre)).length;
 
@@ -36,7 +35,6 @@ const EventGenre = ({ events }) => {
                     innerRadius={30}
                     label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                     outerRadius={90}
-                    // fill="#ff715b"
                     dataKey="value"
                 >
                     {data.map((entry, index) => (
