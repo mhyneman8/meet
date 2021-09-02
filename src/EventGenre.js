@@ -8,7 +8,7 @@ const EventGenre = ({ events }) => {
     const [data, setData] = useState([]);
 
     const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'Angular JS'];
-    const COLORS = ['#342a21', '#61a0af', '#FF715b', '#592e83', '#679436'];
+    const COLORS = ['#61a0af', '#342a21', '#FF715b', '#592e83', '#679436'];
 
     const getData = () => {
         // const { events } = this.useState;

@@ -34,21 +34,6 @@ class App extends Component {
       :
         events.filter((event) => event.location === location);
 
-      // if (location === 'all' && numberOfEvents === 0) {
-      //   locationEvents = events;
-      // } else if (location !== 'all' && numberOfEvents === 0) {
-      //   locationEvents = events;
-      // } else if (location === '' && numberOfEvents > 0) {
-      //   locationEvents = events.filter((event) => event.location === location);
-      // } else if (location === '' && numberOfEvents === '') {
-      //   locationEvents = events;
-      // }
-
-      // const locationEvents = (location === 'all')
-      // ?
-      //   events.slice(0, numberOfEvents)
-      // :
-      //   events.filter((event) => event.location === location);
       // if (this.mounted) {
         this.setState({
         events: locationEvents.slice(0, numberOfEvents),
@@ -82,15 +67,15 @@ class App extends Component {
     const { numberOfEvents } = this.state;
     this.mounted = true;
 
-    if (!navigator.onLine) {
-      this.setState({
-        infoText: 'You are currently offline. The data shown may not be current.'
-      });
-    } else {
-      this.setState({
-        infoText: '',
-      });
-    }
+    // if (!navigator.onLine) {
+    //   this.setState({
+    //     infoText: 'You are currently offline. The data shown may not be current.'
+    //   });
+    // } else {
+    //   this.setState({
+    //     infoText: '',
+    //   });
+    // }
 
     const accessToken = localStorage.getItem('access_token');
     const isTokenValid = (await checkToken(accessToken)).error ? false : true;
@@ -110,22 +95,21 @@ class App extends Component {
         }
       });
     }
-      // if (!navigator.onLine) {
-      //   this.setState({
-      //     infoText:
-      //       "You are offline. Events displayed may not be up-to-date",
-      //   });
-      // } else {
-      //   this.setState({
-      //     infoText: "",
-      //   });
-      // }
-    // }
-  }
+      if (!navigator.onLine) {
+        this.setState({
+          infoText:
+            "You are offline. Events displayed may not be up-to-date",
+        });
+      } else {
+        this.setState({
+          infoText: "",
+        });
+      }
+    }
 
-  // componentWillUnmount() {
-  //   this.mounted = false;
-  // }
+  componentWillUnmount() {
+    this.mounted = false;
+  }
 
   getData = () => {
     const { locations, events } = this.state;
@@ -138,7 +122,7 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.showWelcomScreen === undefined) 
+    if (this.state.showWelcomeScreen === undefined) 
       return <div className="App" />
     
     return (
@@ -150,18 +134,14 @@ class App extends Component {
         <CitySearch  
           updateCitySearch={(e) => this.updateCitySearch(e)}
           locations={this.state.locations} 
-          // updateEvents={this.updateEvents}
-          // numberOfEvents={this.state.numberOfEvents}  
-          // events={this.state.events}
         />
 
         <NumberOfEvents 
           updateNumberOfEvents={(e) => this.updateNumberOfEvents(e)}
-          // numberOfEvents={this.state.numberOfEvents}
         />
 
         { this.state.loading ? <Loader /> : ''}
-        <InfoAlert text={this.state.text} /> 
+        { !navigator.onLine ? <InfoAlert text='You are currently offline. The data shown may not be current.' /> : '' }
 
         <h4>Events in each city</h4>
 

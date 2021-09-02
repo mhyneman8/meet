@@ -1,5 +1,6 @@
 import { mockData } from './mock-data';
 import NProgress from 'nprogress';
+import './nprogress.css';
 import axios from 'axios';
 
 const removeQuery = () => {
@@ -17,12 +18,13 @@ const removeQuery = () => {
 };
 
 const checkToken = async (accessToken) => {
+    
     const result = await fetch(`https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`)
         .then((res) => res.json())
         .catch((error) => error.json());
-
-    return result
-}
+    console.log(accessToken)
+    return result;
+};
 
 const extractLocations = (events) => {
     var extractLocations = events.map((event) => event.location);
