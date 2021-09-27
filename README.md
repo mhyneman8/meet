@@ -4,6 +4,10 @@
 
 Meet is a serverless, progressive web application with React using a test-driven development technique. Users can filter events by city, show/hide event details, specify number of events, use the app when offline, add an app shortcut to the home screen, and view a chart showing the number of upcoming events by city.
 
+## Authors
+
+- [@MalloryHyneman](https://www.github.com/mhyneman8)
+
 ## User Stories
 
 #### Feature 2: Show/Hide an events details
@@ -48,10 +52,46 @@ Given main page is open
 When user looks at multiple cities
 Then user will see number of upcoming events in listed cities
  
+## Tech Stack
+
+**Client:** React, React Bootstrap,
+
+**Server:** 
+ 
 ## How to Run:
 
 npm install npm run start
 npm run build to create a production build
+
+
+| Color             | Hex                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| Primary Color | ![#e5f9e0](https://via.placeholder.com/10/e5f9e0?text=+) #e5f9e0 |
+| Secondary Color | ![#ff715b](https://via.placeholder.com/10/ff715b?text=+) #ff715b |
+| Tertiary Color | ![#342a21](https://via.placeholder.com/10/342a21?text=+) #342a21 |
+| Accent Color | ![#61a0af](https://via.placeholder.com/10/61a0af?text=+) #61a0af |
+
+
+## API Reference
+
+#### Get all items
+
+```http
+  GET /googlemapsapi/items
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `string` | **Required**. Your API key |
+
+  
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  npm run test
+```
 
 ## Dependencies
 
