@@ -60,7 +60,8 @@ Then user will see number of upcoming events in listed cities
  
 ## How to Run:
 
-npm install npm run start
+npm install 
+npm run start
 npm run build to create a production build
 
 
