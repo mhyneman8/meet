@@ -65,6 +65,8 @@ npm run start
 npm run build (to create a production build)
 
 
+## Color Scheme
+
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
 | Primary Color | ![#e5f9e0](https://via.placeholder.com/10/e5f9e0?text=+) #e5f9e0 |
