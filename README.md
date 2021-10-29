@@ -62,7 +62,7 @@ Then user will see number of upcoming events in listed cities
 
 npm install 
 npm run start
-npm run build to create a production build
+npm run build (to create a production build)
 
 
 | Color             | Hex                                                                |
