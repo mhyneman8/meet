@@ -5,9 +5,11 @@ function WelcomeScreen(props) {
     return props.showWelcomeScreen ?
     (
         <div className="WelcomeScreen">
-            <div className="welcome-image"></div>
-            <h1 className="welcome">Welcome to the Meet app</h1>
-            <img src="./img/computerCode.jpg" alt="" />
+            {/* <div className="welcome-image"></div> */}
+            <div className="welcome-text">
+                <h3 className="welcome">Welcome to</h3>
+                <h1 className="welcome2">Meet app</h1> 
+            </div>
             
             <div className="welcome-para">
                 <h4 className="wel-text">

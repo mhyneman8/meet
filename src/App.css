@@ -61,6 +61,7 @@ p {
 }
 
 .title {
+  background-image: url('../src/img/computerCode.jpg');
   font-size: 45px;
   color: #342a21;
 }
@@ -180,10 +181,34 @@ h1 {
 }
 
 .numberOfEvents {
+  position: fixed;
   width: 200px;
   margin: 20px auto;
   text-align: center;
 }
+
+.NumberOfEvents {
+  position: fixed;
+  bottom: 0;
+  z-index: 3;
+  width: 100vw;
+  padding-bottom: 30px;
+  background-color: #e5f9e0;
+}
+
+/* .NumberOfEvents {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #484;
+  z-index: 2;
+  width: 100vw;
+  padding-bottom: 20px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+} */
 
 .button-wrapper {
   display: grid;

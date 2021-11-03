@@ -64,6 +64,9 @@ npm install
 npm run start
 npm run build to create a production build
 
+### Locally
+
+npm start
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |

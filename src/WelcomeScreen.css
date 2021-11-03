@@ -4,48 +4,47 @@
     height: 100vh;
     top: 0;
     background: #e5f9e0;
+    z-index: 4;
 }
 
+.welcome-text {
+    text-align: center;
+    background-image: url(./img/computerCode.jpg);
+    background-size: cover;
+    height: 40%;
+}
 .welcome {
     color: #e5f9e0;
-    position: absolute;
-    top: 6%;
-    left: 14%;
-    text-align: center;
-    font-size: 60px;
-    margin: 30px auto;
+    display: block;
+    font-size: 40px;
+    margin: 20px auto 10px auto;
+    padding-top: 20px;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: #342a21;
 }
 
-@media all and (max-width: 1010px) {
-    .welcome {
-        left: 10%;
-    }
-}
-@media all and (max-width: 960px) {
-    .welcome {
-        font-size: 50px;
-    }
+.welcome2 {
+    color: #e5f9e0;
+    display: block;
+    font-size: 100px;
+    margin: 0 auto;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #342a21;
 }
 
-@media all and (max-width: 790px) {
-    .welcome {
-        left: 5%;
-    }
-}
 @media all and (max-width: 745px) {
-    .welcome {
-        font-size: 45px;
+    .welcome2 {
+        font-size: 75px;
     }
 }
 
 @media all and (max-width: 500px) {
-    .welcome {
-        font-size: 30px;
+    .welcome2 {
+        font-size: 60px;
     }
-    .welcome-image {
-        height: 20% !important; 
+    .welcome {
+        padding-top: 40px;
+        font-size: 25px;
     }
     .welcome-para {
         width: 80% !important;
@@ -56,14 +55,13 @@
     background-color: white;
     width: 500px;
     padding: 30px;
-    margin: 15% auto;
+    margin: 50px auto;
 }
 .welcome-image {
     background-image: url('img/computerCode.jpg');
     object-fit: cover;
     width: 100%;
-    height: 30%;
-    margin-top: 20px;
+    
 }
 
 .wel-text {
