@@ -24,7 +24,7 @@
 }
 
 .welcome2 {
-    color: #e5f9e0;
+    color: white;
     display: block;
     font-size: 100px;
     margin: 0 auto;
@@ -56,12 +56,6 @@
     width: 500px;
     padding: 30px;
     margin: 50px auto;
-}
-.welcome-image {
-    background-image: url('img/computerCode.jpg');
-    object-fit: cover;
-    width: 100%;
-    
 }
 
 .wel-text {
