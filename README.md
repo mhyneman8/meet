@@ -4,6 +4,10 @@
 
 Meet is a serverless, progressive web application with React using a test-driven development technique. Users can filter events by city, show/hide event details, specify number of events, use the app when offline, add an app shortcut to the home screen, and view a chart showing the number of upcoming events by city.
 
+## Live Page
+
+https://mhyneman8.github.io/meet/
+
 ## Authors
 
 - [@MalloryHyneman](https://www.github.com/mhyneman8)
@@ -62,11 +66,15 @@ Then user will see number of upcoming events in listed cities
 
 npm install 
 npm run start
-npm run build to create a production build
+npm run build (to create a production build)
+
 
 ### Locally
 
 npm start
+
+
+## Color Scheme
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
