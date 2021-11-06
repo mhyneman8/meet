@@ -14,7 +14,7 @@ class CitySearch extends Component {
         const suggestions = this.props.locations.filter((location) => {
             return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
         });
-        if ( suggestions.length === 0) {
+        if (suggestions.length === 0) {
             this.setState({
                 query: value,
                 infoText: 'We can\'t find that city. Please try another city.',
@@ -31,18 +31,18 @@ class CitySearch extends Component {
     handleItemClicked = (suggestion) => {
         this.setState({
             query: suggestion,
-            infoText: '',
+            // infoText: '',
             showSuggestions: false,
-           
         });
         this.props.updateCitySearch(suggestion);
+        // this.props.updateEvents(suggestion);
     };
 
-    handleClose = () => {
-        this.setState({
-            showSuggestions: false
-        });
-    }
+    // handleClose = () => {
+    //     this.setState({
+    //         showSuggestions: false
+    //     });
+    // }
 
     render() {
         return (
@@ -56,15 +56,16 @@ class CitySearch extends Component {
                     value={this.state.query}
                     onChange={this.handleInputChanged}
                     onFocus={() => { this.setState({ showSuggestions: true }) }}
+                    onBlur={() => { this.setState({ showSuggestions: false}) }}
                 />
                 
                 <ul className="suggestions"
                     style={this.state.showSuggestions ? {}: { display: 'none' }}
                 >
-                    <span 
+                    {/* <span 
                         className="close"
                         onClick={() => this.handleClose()}
-                    >x</span>
+                    >x</span> */}
                     {this.state.suggestions.map((suggestion) => (
                         <li key={suggestion}
                             onClick={() => this.handleItemClicked(suggestion)}

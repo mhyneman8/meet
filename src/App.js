@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Accordion from 'react-bootstrap/Accordion';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './App.css';
 import './nprogress.css';
 
@@ -25,8 +28,7 @@ class App extends Component {
 
   updateEvents = (location, numberOfEvents) => {
     console.log('events');
-
-    // let locationEvents;
+    // const { currentCity, numberOfEvents } = this.state;
     getEvents().then((events) => {
       const locationEvents = (location === 'all')
       ?
@@ -57,7 +59,6 @@ class App extends Component {
   }
 
   async componentDidMount() {
-   
     const { numberOfEvents } = this.state;
     this.mounted = true;
 
@@ -68,7 +69,6 @@ class App extends Component {
 
     this.setState({ showWelcomeScreen: !(code || isTokenValid) });
     if ((code || isTokenValid) && this.mounted) {
-
       getEvents().then((events) => {
         if (this.mounted) {
         this.setState({ 
@@ -111,15 +111,17 @@ class App extends Component {
     
     return (
       <div className="App">
-        <h1 className="title">
-          Meet App
-        </h1>
+        <div className="title">
+          <h1 className="title-text">
+            Meet App
+          </h1>
+          <CitySearch  
+            updateCitySearch={(e) => this.updateCitySearch(e)}
+            locations={this.state.locations} 
+          />
 
-        <CitySearch  
-          updateCitySearch={(e) => this.updateCitySearch(e)}
-          locations={this.state.locations} 
-        />
-
+        </div>
+        
         <NumberOfEvents 
           updateNumberOfEvents={(e) => this.updateNumberOfEvents(e)}
         />
@@ -127,9 +129,44 @@ class App extends Component {
         { this.state.loading ? <Loader /> : ''}
         { !navigator.onLine ? <InfoAlert text='You are currently offline. The data shown may not be current.' /> : '' }
 
-        <h4>Events in each city</h4>
+        <h4 className="mt-4">Events in each city</h4>
 
-        <div className="data-vis-wrapper">
+        <Accordion>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>
+                View Number of Events in {this.state.currentCity}
+              </Accordion.Header>
+              <Accordion.Body>
+                <ResponsiveContainer height={300} width={400}>
+                  <ScatterChart
+                    margin={{ top: 20, right: 20, bottom: 20, left: 0 }}
+                  >
+                    <CartesianGrid />
+                    <XAxis type="category" dataKey="city" name="city" />
+                    <YAxis
+                      type="number"
+                      dataKey="number"
+                      name="number of events"
+                    />
+                    <Tooltip cursor={{ strokeDasharray: "3 3" }} />
+                    <Scatter data={this.getData()} fill="#ff715b" />
+                  </ScatterChart>
+                </ResponsiveContainer>
+              </Accordion.Body>
+            </Accordion.Item>
+
+            <Accordion.Item eventKey="1">
+              <Accordion.Header className="font-weight-bold">
+                View Most Popular Types of Events in{" "}
+                {this.state.currentCity}
+              </Accordion.Header>
+              <Accordion.Body>
+              <EventGenre events={this.state.events} />
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+
+        {/* <div className="data-vis-wrapper">
 
           <EventGenre events={this.state.events} />
 
@@ -151,7 +188,7 @@ class App extends Component {
               <Scatter data={this.getData()} fill="#ff715b" />
             </ScatterChart>
           </ResponsiveContainer>
-        </div>
+        </div> */}
 
         <EventList 
           events={this.state.events} 

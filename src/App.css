@@ -39,9 +39,30 @@ label {
   font-size: 30px
 }
 
+@media all and (max-width: 900px) {
+  label {
+    font-size: 25px;
+  }
+}
+
 .number-label {
   display: block;
-  padding-top: 28px;
+  font-size: 20px;
+}
+
+.accordion {
+  margin: 30px;
+  
+}
+
+.accordion-button {
+  color: #61a0af;
+}
+
+.accordion-item {
+  width: 400px;
+  text-align: center;
+  margin: 10px auto;
 }
 
 p {
@@ -62,13 +83,29 @@ p {
 
 .title {
   background-image: url('../src/img/computerCode.jpg');
-  font-size: 45px;
-  color: #342a21;
+  background-size: cover;
+  padding: 30px;
+  height: 150px;
+  color: white;
+  position: relative;
+}
+
+.title-text {
+  font-size: 55px;
+  color: white;
+  text-align: left;
+  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-width: 2px;
+}
+
+@media all and (max-width: 900px) {
+  .title-text {
+    font-size: 45px;
+  }
 }
 
 input[type="text"],
 input[type="number"] {
-  padding: 8px 6px 8px 10px;
   border-radius: 4px;
   outline: none;
   border: 1px solid #ccc;
@@ -76,14 +113,24 @@ input[type="number"] {
   line-height: 20px;
   align-self: center;
   height: 38px;
+}
+
+input[type="text"] {
+  padding: 16px 6px 6px 10px;
+}
+
+input[type="number"] {
+  padding: 8px 6px 8px 10px;
+  width: 100px;
+  height: 30px;
   text-align: center;
 }
 
 .Alert {
-  position: relative !important;
-  top: 0 !important;
+  position: absolute;
+  top: -6px;
+  right: 3px;
   font-size: 12px;
-  margin-top: -5px;
   min-height: 20px;
 }
 
@@ -95,25 +142,28 @@ input[type="number"] {
 
 .city {
   width: 250px;
+  margin-left: 30px;
 }
 
 .CitySearch {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-basis: 300px;
-  max-width: 300px;
-  margin: auto;
-  position: relative;
+  position: absolute;
+  bottom: 15px;
+  right: 30px;
 }
 
 .suggestions {
   width: 250px;
   z-index: 2;
-  align-self: center;
-  margin: 0;
   background-color: #eee;
   grid-template-columns: 1fr;
   font-size: 14px;
+  color: black;
+  position: absolute;
+  right: -1px;
+  top: 42px;
   box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
 }
 
@@ -135,25 +185,37 @@ input[type="number"] {
 
 .event {
   padding: 10px 10px 35px;
-  
   text-align: left;
   border: 1px solid #ccc;
   border-radius: 4px;
   position: relative;
   background-color: #fff;
-  min-height: 226px;
+  min-height: 250px;
+}
+
+.event-title {
+
+}
+@media all and (max-width: 900px) {
+  .event-title {
+    font-size: 25px;
+  }
+}
+ul:last-child {
+  margin-bottom: 45px;
 }
 
 .details-btn {
   position: absolute;
   right: 25px;
-  bottom: 5px;
+  bottom: 25px;
   padding: 5px 8px;
   border-radius: 4px;
   outline: none;
   cursor: pointer;
-  background-color: #ff715b;
-  color: #e5f9e0;
+  color: #ff715b;
+  background-color: white;
+  font-weight: 600;
   border-color: #d9614e;
 }
 
@@ -180,19 +242,19 @@ h1 {
   overflow-x: hidden;
 }
 
-.numberOfEvents {
+/* .numberOfEvents {
   position: fixed;
   width: 200px;
   margin: 20px auto;
   text-align: center;
-}
+} */
 
 .NumberOfEvents {
   position: fixed;
   bottom: 0;
   z-index: 3;
   width: 100vw;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   background-color: #e5f9e0;
 }
 
@@ -218,10 +280,10 @@ h1 {
   font-family: sans-serif;
 }
 
-.Alert {
+/* .Alert {
   position: fixed;
   top: 20px;
-}
+} */
 
 .data-vis-wrapper {
   display: flex;

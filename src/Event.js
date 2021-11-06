@@ -21,7 +21,9 @@ class Event extends Component {
 
     render() {
         const { event } = this.props;
-
+        const dateTime = new Date(event.start.dateTime).toLocaleTimeString();
+        const date = new Date(event.start.dateTime).toLocaleDateString();
+        
         return (
             <div className="event">
                 <div className="event-list">
@@ -32,7 +34,10 @@ class Event extends Component {
                         {event.location}
                     </p>
                     <p className="event-dateTime">
-                        start: {event.start.dateTime} - {event.start.timeZone}
+                        start: {dateTime} - {event.start.timeZone}
+                    </p>
+                    <p>
+                        {date}
                     </p>
                    
                     <button 
