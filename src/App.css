@@ -134,6 +134,10 @@ input[type="number"] {
   min-height: 20px;
 }
 
+.recharts-surface {
+  margin-left: -67px;
+}
+
 .img {
   background-color: #e5f9e0;
   width: 50px;
