@@ -161,7 +161,7 @@ class App extends Component {
                 {this.state.currentCity}
               </Accordion.Header>
               <Accordion.Body>
-              <EventGenre events={this.state.events} />
+                <EventGenre events={this.state.events} />
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
